@@ -24,6 +24,14 @@ data/raw/20k_abstracts/test.txt
 
 The PubMed 20k RCT raw split used in this project is included in this repository under `data/raw/20k_abstracts/`. See [data/README_data.md](data/README_data.md) for setup notes.
 
+The cleaned sentence-level CSV files are also included:
+
+```text
+data/processed/train_processed.csv
+data/processed/val_processed.csv
+data/processed/test_processed.csv
+```
+
 ## 4. Problem Definition
 
 Given one sentence from a structured medical abstract, predict its sentence role:
