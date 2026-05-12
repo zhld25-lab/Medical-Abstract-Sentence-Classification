@@ -26,13 +26,13 @@ data/raw/20k_abstracts/dev.txt
 data/raw/20k_abstracts/test.txt
 ```
 
-## Why Raw Files Are Not Committed
+## Repository Data Policy
 
-The raw dataset text files are not committed to GitHub because dataset files can be large and should be managed separately from source code. The `.gitignore` file excludes `data/raw/`, so users can place the data locally without accidentally committing it.
+The PubMed 20k RCT raw files used by this project are included in this repository so the notebook, scripts, and Streamlit app can be reproduced without a separate dataset download. Larger future datasets, such as PubMed 200k RCT, should still be managed carefully because they can make the repository much heavier.
 
 ## How to Add the Data Locally
 
-After downloading or extracting the dataset archive, place the 20k split here:
+The included 20k split is expected here:
 
 ```text
 data/raw/20k_abstracts/train.txt
@@ -45,4 +45,3 @@ Then run the training script from the project root:
 ```bash
 python src/train_baseline_models.py
 ```
-

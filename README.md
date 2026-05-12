@@ -22,7 +22,7 @@ data/raw/20k_abstracts/dev.txt
 data/raw/20k_abstracts/test.txt
 ```
 
-Raw data files are not committed to GitHub. See [data/README_data.md](data/README_data.md) for setup notes.
+The PubMed 20k RCT raw split used in this project is included in this repository under `data/raw/20k_abstracts/`. See [data/README_data.md](data/README_data.md) for setup notes.
 
 ## 4. Problem Definition
 

@@ -1,7 +1,5 @@
 archive.zip
 *.pkl
-*.joblib
-outputs/models/*.joblib
 outputs/models/*.pkl
 __pycache__/
 .ipynb_checkpoints/
