@@ -1,0 +1,21 @@
+target,text,line_number,total_lines,relative_position
+OBJECTIVE,"To investigate the efficacy of 6 weeks of daily low-dose oral prednisolone in improving pain , mobility , and systemic low-grade inflammation in the short term and whether the effect would be sustained at 12 weeks in older adults with moderate to severe knee osteoarthritis ( OA ) .",0,12,0.0
+METHODS,A total of 125 patients with primary knee OA were randomized 1:1 ; 63 received 7.5 mg/day of prednisolone and 62 received placebo for 6 weeks .,1,12,0.08333333333333333
+METHODS,Outcome measures included pain reduction and improvement in function scores and systemic inflammation markers .,2,12,0.16666666666666666
+METHODS,Pain was assessed using the visual analog pain scale ( 0-100 mm ) .,3,12,0.25
+METHODS,"Secondary outcome measures included the Western Ontario and McMaster Universities Osteoarthritis Index scores , patient global assessment ( PGA ) of the severity of knee OA , and 6-min walk distance ( 6MWD ) .",4,12,0.3333333333333333
+METHODS,"Serum levels of interleukin 1 ( IL-1 ) , IL-6 , tumor necrosis factor ( TNF ) - , and high-sensitivity C-reactive protein ( hsCRP ) were measured .",5,12,0.4166666666666667
+RESULTS,"There was a clinically relevant reduction in the intervention group compared to the placebo group for knee pain , physical function , PGA , and 6MWD at 6 weeks .",6,12,0.5
+RESULTS,"The mean difference between treatment arms ( 95 % CI ) was 10.9 ( 4.8-18 .0 ) , p < 0.001 ; 9.5 ( 3.7-15 .4 ) , p < 0.05 ; 15.7 ( 5.3-26 .1 ) , p < 0.001 ; and 86.9 ( 29.8-144 .1 ) , p < 0.05 , respectively .",7,12,0.5833333333333334
+RESULTS,"Further , there was a clinically relevant reduction in the serum levels of IL-1 , IL-6 , TNF - , and hsCRP at 6 weeks in the intervention group when compared to the placebo group .",8,12,0.6666666666666666
+RESULTS,These differences remained significant at 12 weeks .,9,12,0.75
+RESULTS,The Outcome Measures in Rheumatology Clinical Trials-Osteoarthritis Research Society International responder rate was 65 % in the intervention group and 34 % in the placebo group ( p < 0.05 ) .,10,12,0.8333333333333334
+CONCLUSIONS,"Low-dose oral prednisolone had both a short-term and a longer sustained effect resulting in less knee pain , better physical function , and attenuation of systemic inflammation in older patients with knee OA ( ClinicalTrials.gov identifier NCT01619163 ) .",11,12,0.9166666666666666
+BACKGROUND,Emotional eating is associated with overeating and the development of obesity .,0,11,0.0
+BACKGROUND,"Yet , empirical evidence for individual ( trait ) differences in emotional eating and cognitive mechanisms that contribute to eating during sad mood remain equivocal .",1,11,0.09090909090909091
+OBJECTIVE,The aim of this study was to test if attention bias for food moderates the effect of self-reported emotional eating during sad mood ( vs neutral mood ) on actual food intake .,2,11,0.18181818181818182
+OBJECTIVE,It was expected that emotional eating is predictive of elevated attention for food and higher food intake after an experimentally induced sad mood and that attentional maintenance on food predicts food intake during a sad versus a neutral mood .,3,11,0.2727272727272727
+METHODS,Participants ( N = 85 ) were randomly assigned to one of the two experimental mood induction conditions ( sad/neutral ) .,4,11,0.36363636363636365
+METHODS,Attentional biases for high caloric foods were measured by eye tracking during a visual probe task with pictorial food and neutral stimuli .,5,11,0.45454545454545453
+METHODS,Self-reported emotional eating was assessed with the Dutch Eating Behavior Questionnaire ( DEBQ ) and ad libitum food intake was tested by a disguised food offer .,6,11,0.5454545454545454
+RESULTS,Hierarchical multivariate regression modeling showed that self-reported emotional eating did not account for changes in attention allocation for food or food intake in either condition .,7,11,0.6363636363636364

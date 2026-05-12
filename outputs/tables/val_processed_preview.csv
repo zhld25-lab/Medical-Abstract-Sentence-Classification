@@ -1,0 +1,21 @@
+target,text,line_number,total_lines,relative_position
+BACKGROUND,IgE sensitization to Aspergillus fumigatus and a positive sputum fungal culture result are common in patients with refractory asthma .,0,10,0.0
+BACKGROUND,It is not clear whether these patients would benefit from antifungal treatment .,1,10,0.1
+OBJECTIVE,We sought to determine whether a 3-month course of voriconazole improved asthma-related outcomes in patients with asthma who are IgE sensitized to A fumigatus .,2,10,0.2
+METHODS,"Asthmatic patients who were IgE sensitized to A fumigatus with a history of at least 2 severe exacerbations in the previous 12 months were treated for 3 months with 200 mg of voriconazole twice daily , followed by observation for 9 months , in a double-blind , placebo-controlled , randomized design .",3,10,0.3
+METHODS,Primary outcomes were improvement in quality of life at the end of the treatment period and a reduction in the number of severe exacerbations over the 12 months of the study .,4,10,0.4
+RESULTS,Sixty-five patients were randomized .,5,10,0.5
+RESULTS,Fifty-nine patients started treatment ( 32 receiving voriconazole and 27 receiving placebo ) and were included in an intention-to-treat analysis .,6,10,0.6
+RESULTS,Fifty-six patients took the full 3 months of medication .,7,10,0.7
+RESULTS,"Between the voriconazole and placebo groups , there were no significant differences in the number of severe exacerbations ( 1.16 vs 1.41 per patient per year , respectively ; mean difference , 0.25 ; 95 % CI , 0.19-0 .31 ) , quality of life ( change in Asthma Quality of Life Questionnaire score , 0.68 vs 0.88 ; mean difference between groups , 0.2 ; 95 % CI , -0.05 to -0.11 ) , or any of our secondary outcome measures .",8,10,0.8
+CONCLUSIONS,"We were unable to show a beneficial effect of 3 months of treatment with voriconazole in patients with moderate-to-severe asthma who were IgE sensitized to A fumigatus on either the rate of severe exacerbations , quality of life , or other markers of asthma control .",9,10,0.9
+BACKGROUND,"Opioid antagonists ( e.g. , naltrexone ) and positive modulators of - aminobutyric-acidA ( GABAA ) receptors ( e.g. , alprazolam ) modestly attenuate the abuse-related effects of stimulants like amphetamine .",0,11,0.0
+BACKGROUND,The use of higher doses to achieve greater efficacy is precluded by side effects .,1,11,0.09090909090909091
+BACKGROUND,Combining naltrexone and alprazolam might safely maximize efficacy while avoiding the untoward effects of the constituent compounds .,2,11,0.18181818181818182
+OBJECTIVE,The present pilot study tested the hypothesis that acute pretreatment with the combination of naltrexone and alprazolam would not produce clinically problematic physiological effects or negative subjective effects and would reduce the positive subjective effects of d-amphetamine to a greater extent than the constituent drugs alone .,3,11,0.2727272727272727
+METHODS,"Eight nontreatment-seeking , stimulant-using individuals completed an outpatient experiment in which oral d-amphetamine ( 0 , 15 , and 30 mg ) was administered following acute pretreatment with naltrexone ( 0 and 50 mg ) and alprazolam ( 0 and 0.5 mg ) .",4,11,0.36363636363636365
+METHODS,"Subjective effects , psychomotor task performance , and physiological measures were collected .",5,11,0.45454545454545453
+RESULTS,"Oral d-amphetamine produced prototypical physiological and stimulant-like positive subjective effects ( e.g. , VAS ratings of Active/Alert/Energetic , Good Effect , and High ) .",6,11,0.5454545454545454
+RESULTS,"Pretreatment with naltrexone , alprazolam , and their combination did not produce clinically problematic acute physiological effects or negative subjective effects .",7,11,0.6363636363636364
+RESULTS,Naltrexone and alprazolam each significantly attenuated some of the subjective effects of d-amphetamine .,8,11,0.7272727272727273
+RESULTS,The combination attenuated a greater number of subjective effects than the constituent drugs alone .,9,11,0.8181818181818182

@@ -1,0 +1,2 @@
+model,accuracy,macro_f1,weighted_f1
+TF-IDF + Position Logistic Regression,0.8747848537005164,0.825573324166142,0.8750425203607589

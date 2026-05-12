@@ -1,0 +1,4 @@
+split,count,mean_words,median_words,min_words,max_words,p90_words
+train,180040,26.338435903132638,23.0,1,296,45.0
+validation,30212,26.422547332185886,23.0,1,258,45.0
+test,30135,26.17866268458603,23.0,1,211,44.0

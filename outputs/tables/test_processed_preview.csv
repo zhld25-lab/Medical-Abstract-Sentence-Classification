@@ -1,0 +1,21 @@
+target,text,line_number,total_lines,relative_position
+BACKGROUND,This study analyzed liver function abnormalities in heart failure patients admitted with severe acute decompensated heart failure ( ADHF ) .,0,9,0.0
+RESULTS,A post hoc analysis was conducted with the use of data from the Evaluation Study of Congestive Heart Failure and Pulmonary Artery Catheterization Effectiveness ( ESCAPE ) .,1,9,0.1111111111111111
+RESULTS,"Liver function tests ( LFTs ) were measured at 7 time points from baseline , at discharge , and up to 6 months follow-up .",2,9,0.2222222222222222
+RESULTS,"Survival analyses were used to assess the association between admission Model of End-Stage Liver Disease Excluding International Normalized Ratio ( MELD-XI ) scores and patient outcome.There was a high prevalence of abnormal baseline ( admission ) LFTs ( albumin 23.8 % , aspartate transaminase 23.5 % , alanine transaminase 23.8 % , and total bilirubin 36.1 % ) .",3,9,0.3333333333333333
+RESULTS,The percentage of patients with abnormal LFTs decreased significantly from baseline to 6-months ' follow-up .,4,9,0.4444444444444444
+RESULTS,"When mean hemodynamic profiles were compared in patients with abnormal versus normal LFTs , elevated total bilirubin was associated with a significantly lower cardiac index ( 1.80 vs 2.1 ; P < .001 ) and higher central venous pressure ( 14.2 vs 12.0 ; P = .03 ) .",5,9,0.5555555555555556
+RESULTS,"Multivariable analyses revealed that patients with elevated MELD-XI scores ( 16.8 ) had a 2-fold ( hazard ratio2 .06 , 95 % confidence interval 1.05-4 .03 ) increased risk of death , rehospitalization , or transplantation after adjusting for baseline LFTs , age , sex , race , body mass index , diabetes , and systolic blood pressure .",6,9,0.6666666666666666
+CONCLUSIONS,Abnormal LFTs are common in the ADHF population and are a dynamic marker of an impaired hemodynamic state .,7,9,0.7777777777777778
+CONCLUSIONS,Elevated MELD-XI scores are associated with poor outcomes among patients admitted with ADHF .,8,9,0.8888888888888888
+BACKGROUND,Minimally invasive endovascular aneurysm repair ( EVAR ) could be a surgical technique that improves outcome of patients with ruptured abdominal aortic aneurysm ( rAAA ) .,0,13,0.0
+BACKGROUND,"The aim of this study was to analyse the cost-effectiveness and cost-utility of EVAR compared with standard open repair ( OR ) in the treatment of rAAA , with costs per 30-day and 6-month survivor as outcome parameters .",1,13,0.07692307692307693
+METHODS,"Resource use was determined from the Amsterdam Acute Aneurysm ( AJAX ) trial , a multicentre randomized trial comparing EVAR with OR in patients with rAAA .",2,13,0.15384615384615385
+METHODS,The analysis was performed from a provider perspective .,3,13,0.23076923076923078
+METHODS,"All costs were calculated as if all patients had been treated in the same hospital ( Onze Lieve Vrouwe Gasthuis , teaching hospital ) .",4,13,0.3076923076923077
+RESULTS,A total of 116 patients were randomized .,5,13,0.38461538461538464
+RESULTS,The 30-day mortality rate was 21 per cent after EVAR and 25 per cent for OR : absolute risk reduction ( ARR ) 44 ( 95 per cent confidence interval ( c.i. ) -110 to 197 ) per cent .,6,13,0.46153846153846156
+RESULTS,"At 6months , the total mortality rate for EVAR was 28 per cent , compared with 31 per cent among those assigned to OR : ARR 24 ( -142 to 190 ) per cent .",7,13,0.5384615384615384
+RESULTS,"The mean cost difference between EVAR and OR was 5306 ( 95 per cent c.i. -1854 to 12,659 ) at 30days and 10,189 ( -2477 to 24,506 ) at 6months .",8,13,0.6153846153846154
+RESULTS,"The incremental cost-effectiveness ratio per prevented death was 120,591 at 30days and 424,542 at 6months .",9,13,0.6923076923076923
+RESULTS,There was no significant difference in quality of life between EVAR and OR .,10,13,0.7692307692307693

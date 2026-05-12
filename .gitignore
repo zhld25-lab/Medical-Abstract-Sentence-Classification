@@ -1,0 +1,16 @@
+data/raw/
+archive.zip
+*.pkl
+*.joblib
+outputs/models/*.joblib
+outputs/models/*.pkl
+__pycache__/
+.ipynb_checkpoints/
+
+# Local environments and editor files
+.venv/
+venv/
+.env
+.DS_Store
+Thumbs.db
+

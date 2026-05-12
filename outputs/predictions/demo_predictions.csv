@@ -1,0 +1,5 @@
+text,line_number,total_lines,relative_position,predicted_label
+The aim of this study was to evaluate the effect of treatment.,1,10,0.1,OBJECTIVE
+Participants were randomly assigned to receive placebo or active medication.,4,10,0.4,METHODS
+The intervention group showed a statistically significant reduction in symptoms.,7,10,0.7,RESULTS
+These findings suggest that the treatment may improve patient outcomes.,9,10,0.9,CONCLUSIONS

@@ -1,0 +1,18 @@
+{
+  "best_model_name": "TF-IDF + Position Logistic Regression",
+  "model_filename": "best_model.joblib",
+  "source_model_filename": "tfidf_position_logreg.joblib",
+  "input_mode": "position",
+  "labels": [
+    "BACKGROUND",
+    "OBJECTIVE",
+    "METHODS",
+    "RESULTS",
+    "CONCLUSIONS"
+  ],
+  "structural_features": [
+    "line_number",
+    "total_lines",
+    "relative_position"
+  ]
+}
