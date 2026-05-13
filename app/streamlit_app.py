@@ -23,6 +23,9 @@ if str(SRC_DIR) not in sys.path:
 
 MODEL_DIR = PROJECT_ROOT / "outputs" / "models"
 TABLE_DIR = PROJECT_ROOT / "outputs" / "tables"
+FIGURE_DIR = PROJECT_ROOT / "outputs" / "figures"
+PREDICTION_DIR = PROJECT_ROOT / "outputs" / "predictions"
+PROCESSED_DATA_DIR = PROJECT_ROOT / "data" / "processed"
 
 LABEL_ORDER = ["BACKGROUND", "OBJECTIVE", "METHODS", "RESULTS", "CONCLUSIONS"]
 STRUCTURAL_FEATURES = ["line_number", "total_lines", "relative_position"]
@@ -174,6 +177,60 @@ def inject_css() -> None:
             color: var(--text-muted);
             font-size: 0.92rem;
             margin-bottom: 0.65rem;
+        }
+
+        .workflow-step {
+            background: #FFFFFF;
+            border: 1px solid var(--border);
+            border-left: 5px solid var(--medical-blue);
+            border-radius: 14px;
+            padding: 1rem 1.05rem;
+            box-shadow: 0 8px 18px rgba(15, 23, 42, 0.05);
+            min-height: 145px;
+            margin-bottom: 0.85rem;
+        }
+
+        .workflow-index {
+            color: var(--medical-blue);
+            font-size: 0.78rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.06rem;
+            margin-bottom: 0.35rem;
+        }
+
+        .workflow-title {
+            color: var(--deep-blue);
+            font-size: 1rem;
+            font-weight: 760;
+            margin-bottom: 0.35rem;
+        }
+
+        .workflow-copy {
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            line-height: 1.45;
+        }
+
+        .artifact-card {
+            background: #F8FBFF;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 0.85rem;
+            margin-bottom: 0.65rem;
+        }
+
+        .artifact-name {
+            color: var(--deep-blue);
+            font-weight: 760;
+            font-size: 0.92rem;
+        }
+
+        .artifact-path {
+            color: var(--text-muted);
+            font-size: 0.82rem;
+            font-family: monospace;
+            margin-top: 0.2rem;
         }
 
         .label-badge {
@@ -524,7 +581,10 @@ def style_prediction_table(df: pd.DataFrame):
         na_rep="",
     )
     if "predicted_label" in display_df.columns:
-        styler = styler.applymap(color_label, subset=["predicted_label"])
+        if hasattr(styler, "map"):
+            styler = styler.map(color_label, subset=["predicted_label"])
+        else:
+            styler = styler.applymap(color_label, subset=["predicted_label"])
     return styler
 
 
@@ -638,6 +698,214 @@ def create_dashboard_charts(prediction_df: pd.DataFrame) -> None:
             )
             fig.update_layout(plot_bgcolor="white", paper_bgcolor="white")
             st.plotly_chart(fig, use_container_width=True)
+
+
+def render_workflow_step(index: int, title: str, copy: str) -> None:
+    """Render one compact project workflow card."""
+
+    st.markdown(
+        f"""
+        <div class="workflow-step">
+            <div class="workflow-index">Step {index}</div>
+            <div class="workflow-title">{html.escape(title)}</div>
+            <div class="workflow-copy">{html.escape(copy)}</div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+
+def render_project_workflow() -> None:
+    """Show how the project was built from raw data to deployed app."""
+
+    st.markdown("#### How I Built This Project")
+    workflow_steps = [
+        (
+            "Dataset selection",
+            "Used the PubMed 20k RCT split first instead of the much larger 200k split so the full experiment is reproducible in Colab.",
+        ),
+        (
+            "Raw text parsing",
+            "Parsed train.txt, dev.txt, and test.txt by abstract boundaries, label prefixes, and sentence text.",
+        ),
+        (
+            "Sentence-level preprocessing",
+            "Converted each sentence into target, text, line_number, total_lines, and relative_position columns.",
+        ),
+        (
+            "EDA outputs",
+            "Generated raw line counts, label distributions, sentence length summaries, and saved figures instead of relying only on notebook output.",
+        ),
+        (
+            "Baseline modeling",
+            "Trained TF-IDF + Logistic Regression and TF-IDF + LinearSVC as text-only baselines.",
+        ),
+        (
+            "My feature idea",
+            "Added abstract-structure features because medical abstracts usually follow Background, Objective, Methods, Results, Conclusions order.",
+        ),
+        (
+            "Evaluation and error analysis",
+            "Compared validation metrics, selected the best macro F1 model, evaluated on test data, saved confusion matrix and misclassified examples.",
+        ),
+        (
+            "Application layer",
+            "Built this Streamlit interface for single sentence prediction, full abstract analysis, batch prediction, dashboards, and project storytelling.",
+        ),
+    ]
+
+    for start in range(0, len(workflow_steps), 2):
+        col1, col2 = st.columns(2)
+        with col1:
+            title, copy = workflow_steps[start]
+            render_workflow_step(start + 1, title, copy)
+        if start + 1 < len(workflow_steps):
+            with col2:
+                title, copy = workflow_steps[start + 1]
+                render_workflow_step(start + 2, title, copy)
+
+
+def render_artifact_card(name: str, path: Path, note: str) -> None:
+    """Render a saved file artifact card."""
+
+    status = "Available" if path.exists() else "Missing"
+    st.markdown(
+        f"""
+        <div class="artifact-card">
+            <div class="artifact-name">{html.escape(name)} · {status}</div>
+            <div class="workflow-copy">{html.escape(note)}</div>
+            <div class="artifact-path">{html.escape(str(path.relative_to(PROJECT_ROOT)))}</div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+
+def render_table_output(title: str, path: Path, height: int = 260, max_rows: int | None = None) -> None:
+    """Render a saved CSV output with graceful empty handling."""
+
+    st.markdown(f"#### {title}")
+    df = load_csv_if_exists(path)
+    if df.empty:
+        render_empty_state(f"{path.name} is not available yet.")
+        return
+    if max_rows is not None:
+        df = df.head(max_rows)
+    st.dataframe(df, use_container_width=True, height=height)
+
+
+def render_figure_output(title: str, path: Path, caption: str) -> None:
+    """Render a saved figure output if present."""
+
+    st.markdown(f"#### {title}")
+    if not path.exists():
+        render_empty_state(f"{path.name} is not available yet.")
+        return
+    st.image(str(path), caption=caption, use_container_width=True)
+
+
+def render_saved_outputs() -> None:
+    """Display the main saved outputs produced by the project pipeline."""
+
+    st.markdown("#### Saved Output Gallery")
+    col1, col2 = st.columns(2)
+    with col1:
+        render_figure_output(
+            "Label Distribution",
+            FIGURE_DIR / "label_distribution.png",
+            "Class balance across train, validation, and test splits.",
+        )
+        render_figure_output(
+            "Model Comparison",
+            FIGURE_DIR / "model_comparison.png",
+            "Validation accuracy, macro F1, and weighted F1 across baseline models.",
+        )
+    with col2:
+        render_figure_output(
+            "Sentence Length Histogram",
+            FIGURE_DIR / "text_length_histogram.png",
+            "Distribution of sentence lengths in the PubMed 20k splits.",
+        )
+        render_figure_output(
+            "Confusion Matrix",
+            FIGURE_DIR / "confusion_matrix.png",
+            "Best model mistakes and correct predictions by class.",
+        )
+
+
+def render_output_tables() -> None:
+    """Render important saved tables from the experiment."""
+
+    table_tabs = st.tabs(
+        [
+            "Data Checks",
+            "Model Metrics",
+            "Reports",
+            "Interpretation",
+            "Predictions",
+        ]
+    )
+
+    with table_tabs[0]:
+        col1, col2 = st.columns(2)
+        with col1:
+            render_table_output("Raw Line Counts", TABLE_DIR / "raw_line_counts.csv", height=160)
+            render_table_output("Label Mapping", TABLE_DIR / "label_mapping.csv", height=170)
+        with col2:
+            render_table_output("Text Length Summary", TABLE_DIR / "text_length_summary.csv", height=220)
+            render_table_output("Processed Data Summary", PROCESSED_DATA_DIR / "processed_data_summary.csv", height=160)
+
+    with table_tabs[1]:
+        render_table_output("Model Comparison", TABLE_DIR / "model_comparison.csv", height=180)
+        render_table_output("Best Model Test Metrics", TABLE_DIR / "best_model_test_metrics.csv", height=140)
+
+    with table_tabs[2]:
+        col1, col2 = st.columns(2)
+        with col1:
+            render_table_output(
+                "Best Model Test Classification Report",
+                TABLE_DIR / "best_model_test_classification_report.csv",
+                height=300,
+            )
+        with col2:
+            render_table_output("Confusion Matrix Table", TABLE_DIR / "confusion_matrix.csv", height=260)
+
+    with table_tabs[3]:
+        render_table_output("Top TF-IDF Words by Class", TABLE_DIR / "top_words_by_class.csv", height=430)
+
+    with table_tabs[4]:
+        col1, col2 = st.columns(2)
+        with col1:
+            render_table_output(
+                "Misclassified Examples",
+                PREDICTION_DIR / "misclassified_examples.csv",
+                height=430,
+                max_rows=30,
+            )
+        with col2:
+            render_table_output("Demo Predictions", PREDICTION_DIR / "demo_predictions.csv", height=250)
+
+
+def render_artifact_overview() -> None:
+    """Show the repository files that make the project reproducible."""
+
+    st.markdown("#### Reproducible Project Artifacts")
+    artifacts = [
+        ("Raw training data", PROJECT_ROOT / "data/raw/20k_abstracts/train.txt", "Original PubMed 20k RCT training text file."),
+        ("Processed training CSV", PROCESSED_DATA_DIR / "train_processed.csv", "Cleaned sentence-level training data with structural features."),
+        ("Main notebook", PROJECT_ROOT / "notebooks/01_medical_abstract_sentence_classification.ipynb", "Step-by-step notebook version of the experiment."),
+        ("Training script", PROJECT_ROOT / "src/train_baseline_models.py", "Reusable script that trains models and regenerates outputs."),
+        ("Best model", MODEL_DIR / "best_model.joblib", "Saved model used by this Streamlit application."),
+        ("Model metadata", MODEL_DIR / "best_model_metadata.json", "Metadata describing the selected best model and input mode."),
+    ]
+
+    for start in range(0, len(artifacts), 2):
+        col1, col2 = st.columns(2)
+        with col1:
+            render_artifact_card(*artifacts[start])
+        if start + 1 < len(artifacts):
+            with col2:
+                render_artifact_card(*artifacts[start + 1])
 
 
 def dataframe_to_csv_bytes(df: pd.DataFrame) -> bytes:
@@ -922,11 +1190,11 @@ def render_dashboard_tab(model: object, metadata: dict) -> None:
 
 
 def render_model_details_tab(metadata: dict) -> None:
-    """Render model metadata, metrics, and limitations."""
+    """Render project process, saved outputs, metadata, metrics, and limitations."""
 
     render_section_intro(
         "Model Details",
-        "Review the trained pipeline, validation comparison, test performance, and known limitations.",
+        "Review how the project was built, what outputs were generated, and how the model performed.",
     )
 
     col1, col2, col3 = st.columns(3)
@@ -961,41 +1229,55 @@ def render_model_details_tab(metadata: dict) -> None:
             unsafe_allow_html=True,
         )
 
-    comparison_df = load_csv_if_exists(TABLE_DIR / "model_comparison.csv")
-    test_metrics_df = load_csv_if_exists(TABLE_DIR / "best_model_test_metrics.csv")
-    report_df = load_csv_if_exists(TABLE_DIR / "best_model_test_classification_report.csv")
+    project_tabs = st.tabs(
+        [
+            "Project Workflow",
+            "Saved Figures",
+            "Saved Tables",
+            "Artifacts",
+            "Limitations",
+        ]
+    )
 
-    with st.container(border=True):
-        st.markdown("#### Validation Model Comparison")
-        if comparison_df.empty:
-            render_empty_state("Run training to generate outputs/tables/model_comparison.csv.")
-        else:
-            st.dataframe(comparison_df, use_container_width=True)
+    with project_tabs[0]:
+        with st.container(border=True):
+            render_project_workflow()
 
-    with st.container(border=True):
-        st.markdown("#### Best Model Test Metrics")
-        if test_metrics_df.empty:
-            render_empty_state("Run training to generate outputs/tables/best_model_test_metrics.csv.")
-        else:
-            st.dataframe(test_metrics_df, use_container_width=True)
+        with st.container(border=True):
+            st.markdown("#### My Original Contribution")
+            st.markdown(
+                """
+                The project is not just a text classifier. The core experiment compares
+                pure text-based classification with text plus abstract-structure features.
+                In medical abstracts, sentence position is meaningful, so I engineered
+                `line_number`, `total_lines`, and `relative_position` and compared whether
+                they improved performance over plain TF-IDF baselines.
+                """
+            )
 
-    with st.container(border=True):
-        st.markdown("#### Test Classification Report")
-        if report_df.empty:
-            render_empty_state("Run training to generate the classification report.")
-        else:
-            st.dataframe(report_df, use_container_width=True, height=300)
+    with project_tabs[1]:
+        with st.container(border=True):
+            render_saved_outputs()
 
-    with st.container(border=True):
-        st.markdown("#### Limitations and Future Work")
-        st.markdown(
-            """
-            - This model classifies sentences independently and does not fully model abstract-level sequence dependency.
-            - TF-IDF models cannot deeply understand medical semantics.
-            - PubMed 20k RCT results may not fully generalize to other clinical text.
-            - Future work should include SciBERT or BioBERT fine-tuning, abstract-level sequence modeling, and larger PubMed 200k RCT experiments.
-            """
-        )
+    with project_tabs[2]:
+        with st.container(border=True):
+            render_output_tables()
+
+    with project_tabs[3]:
+        with st.container(border=True):
+            render_artifact_overview()
+
+    with project_tabs[4]:
+        with st.container(border=True):
+            st.markdown("#### Limitations and Future Work")
+            st.markdown(
+                """
+                - This model classifies sentences independently and does not fully model abstract-level sequence dependency.
+                - TF-IDF models cannot deeply understand medical semantics.
+                - PubMed 20k RCT results may not fully generalize to other clinical text.
+                - Future work should include SciBERT or BioBERT fine-tuning, abstract-level sequence modeling, and larger PubMed 200k RCT experiments.
+                """
+            )
 
 
 def main() -> None:
